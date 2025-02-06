@@ -1,14 +1,16 @@
 import express from "express"
 
-import { addMenuItem, getMenuItems } from "../Controller/Menu.controller";
+import { addMenuItem, deleteMenuItem, getMenuItems, updateMenu } from "../Controller/Menu.controller";
 import { authenticatedUser } from "../utils/Authentication";
 
 
 
 const router = express.Router();
 
-router.post("/getMenu",authenticatedUser,getMenuItems);
-router.post("/addMenu",authenticatedUser,addMenuItem)
+router.get("/menu",authenticatedUser,getMenuItems);
+router.post("/menu",authenticatedUser,addMenuItem);
+router.put(`/menu/:id`,authenticatedUser,updateMenu);
+router.delete(`/menu/:id`,authenticatedUser,deleteMenuItem)
 
 
 export default router;

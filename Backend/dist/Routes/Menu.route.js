@@ -5,7 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Menu_controller_1 = require("../Controller/Menu.controller");
+const Authentication_1 = require("../utils/Authentication");
 const router = express_1.default.Router();
-router.post("/getMenu", Menu_controller_1.getMenuItems);
-router.post("/addMenu", Menu_controller_1.addMenuItem);
+router.get("/menu", Authentication_1.authenticatedUser, Menu_controller_1.getMenuItems);
+router.post("/menu", Authentication_1.authenticatedUser, Menu_controller_1.addMenuItem);
+router.put(`/menu/:id`, Authentication_1.authenticatedUser, Menu_controller_1.updateMenu);
+router.delete(`/menu/:id`, Authentication_1.authenticatedUser, Menu_controller_1.deleteMenuItem);
 exports.default = router;
